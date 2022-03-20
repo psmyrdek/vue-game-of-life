@@ -13,9 +13,11 @@
 .cell {
   width: 10px;
   height: 10px;
-  margin: 2px;
+  margin: 1px;
+  padding: 0;
   border: 1px solid #eaeaea;
   display: inline-block;
+  cursor: pointer;
 }
 .cell-alive {
   background: #000;

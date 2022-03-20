@@ -1,19 +1,40 @@
 <script setup>
+import {ref} from "vue";
 import Stage from './Stage.vue'
 import {buildStage} from '../utils/buildStage';
 import {runCycle} from '../utils/runCycle';
 
+let gameTimer = null
+const isPaused = ref(true)
+
 const game = buildStage(20, 50)
 
-setInterval(() => {
-  runCycle(game)
-}, 1000)
+function startGame() {
+  gameTimer = setInterval(() => {
+    runCycle(game)
+  }, 300)
+  isPaused.value = false
+}
+
+function stopGame() {
+  clearInterval(gameTimer)
+  isPaused.value = true
+}
+
+function handleCoords({row, col}) {
+  if (!isPaused.value) {
+    return;
+  }
+  game.stage[row][col] = !game.stage[row][col]
+}
 
 </script>
 
 <template>
-  <h1>Game of Life</h1>
-  <Stage :stage="game.stage" />
+  <h1>Game of Life {{ isPaused ? '(paused)' : '' }}</h1>
+  <Stage :stage="game.stage" @coords="handleCoords($event)"/>
+  <button @click="startGame()">Start</button>
+  <button @click="stopGame()">Stop</button>
 </template>
 
 <style scoped>
