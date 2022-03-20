@@ -7,7 +7,7 @@ import {runCycle} from '../utils/runCycle';
 let gameTimer = null
 const isPaused = ref(true)
 
-const game = buildStage(20, 50)
+const game = buildStage(30, 70)
 
 function startGame() {
   gameTimer = setInterval(() => {

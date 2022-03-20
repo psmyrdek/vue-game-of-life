@@ -11,11 +11,11 @@
 
 <style scoped>
 .cell {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   margin: 1px;
   padding: 0;
-  border: 1px solid #eaeaea;
+  border: 1px solid #efefef;
   display: inline-block;
   cursor: pointer;
 }

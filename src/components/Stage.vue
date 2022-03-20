@@ -19,8 +19,8 @@
   </div>
 </template>
 
-
-
 <style scoped>
-
+.row {
+  height: 12px;
+}
 </style>
