@@ -20,7 +20,13 @@
 </template>
 
 <style scoped>
+.stage {
+  margin-bottom: 20px;
+}
+
 .row {
+  margin: 0;
+  padding: 0;
   height: 12px;
 }
 </style>
