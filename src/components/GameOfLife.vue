@@ -10,8 +10,8 @@ const isPaused = ref(true)
 const game = buildStage(30, 70)
 
 const config = {
-  liveWhen: [0],
-  reviveWhen: [2]
+  liveWhen: [2, 3],
+  reviveWhen: [3]
 }
 
 function startGame() {
