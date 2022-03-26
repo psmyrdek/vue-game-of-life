@@ -30,8 +30,6 @@ export function runCycle(game, config) {
         }
     }
 
-    console.log(changes.length)
-
     changes.forEach(({row, col, value}) => {
         game.stage[row][col] = value
     })
