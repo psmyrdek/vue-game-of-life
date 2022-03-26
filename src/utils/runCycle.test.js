@@ -1,8 +1,8 @@
 import {describe, it, assert} from 'vitest'
 import {calcLiveNeighbours, runCycle} from './runCycle.js'
 
-describe('live neighbours calculations', () => {
-    it ('should calculate neighbors on the edge', () => {
+describe('live neighbours', () => {
+    it ('should calculate on the edge - ver 1', () => {
         const stage = [
             [false, false, false],
             [false, false, false],
@@ -12,7 +12,7 @@ describe('live neighbours calculations', () => {
         assert.equal(live, 0)
     })
 
-    it ('should calculate neighbors on the edge', () => {
+    it ('should calculate on the edge - ver 2', () => {
         const stage = [
             [false, true, false],
             [true, false, false],
@@ -20,6 +20,16 @@ describe('live neighbours calculations', () => {
         ]
         const live = calcLiveNeighbours(stage, 0, 0)
         assert.equal(live, 2)
+    })
+
+    it ('should calculate in the middle', () => {
+        const stage = [
+            [false, true, true],
+            [true, true, true],
+            [false, false, false]
+        ]
+        const live = calcLiveNeighbours(stage, 1, 1)
+        assert.equal(live, 4)
     })
 })
 
