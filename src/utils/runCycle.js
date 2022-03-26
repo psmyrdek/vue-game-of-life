@@ -1,21 +1,19 @@
-function calcLiveNeighbours(stage, i, j) {
-    const maxRows = stage.length
-    const maxCols = stage[0].length
-
+export function calcLiveNeighbours(stage, i, j) {
     return [
-        (i > 0 && j > 0) ? stage[i - 1][j - 1] : false,
-        (i > 0) ? stage[i - 1][j] : false,
-        (i > 0 && j <= maxCols - 2) ? stage[i - 1][j + 1] : false,
-        (j > 0) ? stage[i][j - 1] : false,
-        (j <= maxCols - 2) ? stage[i][j + 1] : false,
-        (i <= maxRows - 2 && j > 0) ? stage[i + 1][j - 1] : false,
-        (i <= maxRows - 2) ? stage[i + 1][j] : false,
-        (i <= maxRows - 2 && j <= maxCols - 2) ? stage[i + 1][j + 1] : false
+        stage[i - 1]?.[j - 1],
+        stage[i - 1]?.[j],
+        stage[i - 1]?.[j + 1],
+        stage[i]?.[j - 1],
+        stage[i]?.[j + 1],
+        stage[i + 1]?.[j - 1],
+        stage[i + 1]?.[j],
+        stage[i + 1]?.[j + 1]
     ].filter(cell => cell).length
 }
 
-export function runCycle(game) {
+export function runCycle(game, config) {
 
+    const {liveWhen, reviveWhen} = config
     const gameCopy = { stage: [] }
 
     for (let i = 0; i < game.stage.length; i++) {
@@ -30,15 +28,13 @@ export function runCycle(game) {
             const liveNeighbours = calcLiveNeighbours(game.stage, i, j)
 
             if (isCellAlive) {
-                if (liveNeighbours < 2) {
-                    isCellAlive = false
-                } else if (liveNeighbours === 2 || liveNeighbours === 3) {
+                if (liveWhen.includes(liveNeighbours)) {
                     isCellAlive = true
-                } else if (liveNeighbours > 3) {
+                } else {
                     isCellAlive = false
                 }
             } else {
-                if (liveNeighbours === 3) {
+                if (reviveWhen.includes(liveNeighbours)) {
                     isCellAlive = true
                 }
             }
