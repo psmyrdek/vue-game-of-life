@@ -9,10 +9,15 @@ const isPaused = ref(true)
 
 const game = buildStage(30, 70)
 
+const config = {
+  liveWhen: [2, 3],
+  reviveWhen: [3]
+}
+
 function startGame() {
   gameTimer = setInterval(() => {
-    runCycle(game)
-  }, 300)
+    runCycle(game, config)
+  }, 100)
   isPaused.value = false
 }
 
