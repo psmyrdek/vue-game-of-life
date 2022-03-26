@@ -40,9 +40,11 @@ describe('game cycle', () => {
                 [false, true, false],
                 [true, true, false],
                 [false, false, false]
-            ]
+            ],
+            liveWhen: [2, 3],
+            reviveWhen: [3]
         }
-        runCycle(game, { liveWhen: [2, 3], reviveWhen: [3]})
+        runCycle(game)
         assert.equal(game.stage[0][0], true)
     })
 })

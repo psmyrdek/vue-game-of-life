@@ -11,16 +11,16 @@ export function calcLiveNeighbours(stage, i, j) {
     ].filter(cell => cell).length
 }
 
-export function runCycle(game, config) {
+export function runCycle(game) {
 
-    const {liveWhen, reviveWhen} = config
+    const {stage, liveWhen, reviveWhen} = game
     const changes = []
 
-    for (let i = 0; i < game.stage.length; i++) {
-        for (let j = 0; j < game.stage[i].length; j++) {
+    for (let i = 0; i < stage.length; i++) {
+        for (let j = 0; j < stage[i].length; j++) {
 
-            let isCellAlive = game.stage[i][j]
-            const liveNeighbours = calcLiveNeighbours(game.stage, i, j)
+            let isCellAlive = stage[i][j]
+            const liveNeighbours = calcLiveNeighbours(stage, i, j)
 
             if (isCellAlive && !liveWhen.includes(liveNeighbours)) {
                 changes.push({ row: i, col: j, value: false})
@@ -31,7 +31,7 @@ export function runCycle(game, config) {
     }
 
     changes.forEach(({row, col, value}) => {
-        game.stage[row][col] = value
+        stage[row][col] = value
     })
 
 }

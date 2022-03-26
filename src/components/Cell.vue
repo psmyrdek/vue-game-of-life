@@ -15,7 +15,7 @@
   height: 8px;
   margin: 1px;
   padding: 0;
-  border: 1px solid #efefef;
+  border: 1px solid #d2d2d2;
   display: inline-block;
   cursor: pointer;
 }
